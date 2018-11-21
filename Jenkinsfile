@@ -7,7 +7,7 @@ node() {
 
       checkout scm
 
-      setupCommonPipelineEnvironment script:this, customDefaults: 'landscape.yml'
+      setupCommonPipelineEnvironment script:this
 
       //checkChangeInDevelopment script: this
   }
