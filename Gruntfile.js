@@ -208,5 +208,5 @@ module.exports = function(grunt) {
 	grunt.registerTask('build', ['clean:dist', 'openui5_preload', 'copy']);
 
 	// Default task
-	grunt.registerTask('default', ['serve']);
+	grunt.registerTask('default', ['build']);
 };
