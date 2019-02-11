@@ -12,6 +12,7 @@ node() {
   }
 
   stage('build') {
+			sh 'mkdir -p dist'
       mtaBuild script: this, dockerImage: 'ppiper/mta-archive-builder'
   }
 
