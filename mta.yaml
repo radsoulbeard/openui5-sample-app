@@ -13,4 +13,3 @@ modules:
        version: 1.0.0-${timestamp}
     build-parameters:
        builder: zip
-       build-result: dist 
