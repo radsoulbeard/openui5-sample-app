@@ -1,0 +1,9 @@
+steps:
+  mtaBuild:
+    dockerImage: 'ppiper/mta-archive-builder:latest'
+  cloudFoundryDeploy:
+    cloudFoundry:
+      credentialsId: 'cf'
+      apiEndpoint: 'https://api.cf.sap.hana.ondemand.com'
+      org: 'abc'
+      space: 'def'
