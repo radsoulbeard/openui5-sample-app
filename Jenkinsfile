@@ -1,4 +1,4 @@
-@Library('piper-library-os') _
+@Library('piper-lib-os') _
 
 node() {
 
@@ -12,7 +12,7 @@ node() {
   }
 
   stage('build') {
-      mtaBuild script: this
+      mtaBuild script: this, dockerImage: 'ppiper/mta-archive-builder'
   }
 
   stage('neoDeploy') {
