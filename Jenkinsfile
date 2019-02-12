@@ -12,7 +12,7 @@ node() {
       mtaBuild script: this, dockerImage: 'ppiper/mta-archive-builder'
   }
 
-  stage('neoDeploy') {
-      neoDeploy script: this
+  stage('deploy') {
+      cloudFoundryDeloy script: this
   }
 }
