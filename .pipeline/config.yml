@@ -6,9 +6,4 @@ steps:
     account: 'aeba5bf84'
     credentialsId: 'neo-credentials'
     host: 'hana.ondemand.com'
-  cloudFoundryDeploy:
-    cloudFoundry:
-      credentialsId: 'cf'
-      apiEndpoint: 'https://api.cf.sap.hana.ondemand.com'
-      org: 'piper'
-      space: 'demo'
+ 
