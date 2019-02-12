@@ -1,6 +1,11 @@
 steps:
   mtaBuild:
     dockerImage: 'ppiper/mta-archive-builder:latest'
+  neoDeploy:
+    dockerImage: 'ppiper/neo-cli'
+    account: p1943039741trial 
+    credentialsId: neo-trial
+    host: hanatrial.ondemand.com
   cloudFoundryDeploy:
     cloudFoundry:
       credentialsId: 'cf'
