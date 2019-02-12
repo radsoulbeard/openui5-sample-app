@@ -3,6 +3,7 @@
 node() {
 
   stage('prepare') {
+		  cleanWs
       checkout scm
       setupCommonPipelineEnvironment script:this
   }
