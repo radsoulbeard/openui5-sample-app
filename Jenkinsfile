@@ -9,10 +9,10 @@ node() {
   }
 
   stage('build') {
-      mtaBuild script: this, dockerImage: 'ppiper/mta-archive-builder', buildTarget: 'CF'
+      mtaBuild script: this, dockerImage: 'ppiper/mta-archive-builder', buildTarget: 'NEO'
   }
 
   stage('deploy') {
-      cloudFoundryDeploy script: this, dockerImage: 'ppiper/cf-cli'
+      neoDeploy script: this, dockerImage: 'ppiper/neo-cli'
   }
 }
