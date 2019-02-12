@@ -1,9 +1,9 @@
 steps:
   mtaBuild:
     dockerImage: 'ppiper/mta-archive-builder:latest'
-  neoDeploy:
-    dockerImage: 'ppiper/neo-cli'
-    account: 'aeba5bf84'
-    credentialsId: 'neo-credentials'
-    host: 'hana.ondemand.com'
- 
+  cloudFoundryDeploy:
+    cloudFoundry:
+      credentialsId: 'neo-credentials'
+      apiEndpoint: 'https://api.cf.eu10.hana.ondemand.com'
+      org: 'piper'
+      space: 'demo'
