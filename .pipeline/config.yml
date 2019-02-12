@@ -3,7 +3,7 @@ steps:
     dockerImage: 'ppiper/mta-archive-builder:latest'
   neoDeploy:
     dockerImage: 'ppiper/neo-cli'
-    account: 'p1943039741trial'
+    account: 'p1943039741'
     credentialsId: 'neo-credentials'
     host: 'hanatrial.ondemand.com'
   cloudFoundryDeploy:
