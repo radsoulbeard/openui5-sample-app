@@ -3,7 +3,7 @@
 node() {
 
   stage('prepare') {
-		  deleteDir(.)
+		  deleteDir()
       checkout scm
       setupCommonPipelineEnvironment script:this
   }
