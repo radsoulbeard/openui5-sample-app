@@ -2,8 +2,10 @@ steps:
   mtaBuild:
     dockerImage: 'ppiper/mta-archive-builder:latest'
   neoDeploy:
-    dockerImage: 'ppiper/neo-cli'
-    account: 'aeba5bf84'
-    credentialsId: 'CI_CREDENTIALS_ID'
-    host: 'hana.ondemand.com'
+    deployMode: mta
+    neo:
+      dockerImage: 'ppiper/neo-cli'
+      account: 'aeba5bf84'
+      credentialsId: 'CI_CREDENTIALS_ID'
+      host: 'hana.ondemand.com'
  
