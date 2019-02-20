@@ -6,7 +6,7 @@ parameters:
   hcp-deployer-version: "1.0.0"
 
 modules:
-  - name: "openui5-sample-app"
+  - name: "demo"
     type: html5
     path: .
     parameters:
