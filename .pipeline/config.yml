@@ -4,6 +4,6 @@ steps:
   neoDeploy:
     dockerImage: 'ppiper/neo-cli'
     account: 'aeba5bf84'
-    credentialsId: 'neo-credentials'
+    credentialsId: 'CI_CREDENTIALS_ID'
     host: 'hana.ondemand.com'
  
