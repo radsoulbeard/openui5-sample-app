@@ -3,7 +3,6 @@
 node() {
 
   stage('prepare') {
-		  deleteDir()
       checkout scm
       setupCommonPipelineEnvironment script:this
   }
@@ -13,6 +12,9 @@ node() {
   }
 
   stage('deploy') {
+      withCredentials([usernamePassword(credentialsId: 'neo-credentials', passwordVariable: '$pass', usernameVariable: '$user')]) {
+    sh "echo $user"
+}
       neoDeploy script: this, dockerImage: 'ppiper/neo-cli'
   }
 }
