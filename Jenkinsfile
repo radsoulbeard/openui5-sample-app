@@ -10,5 +10,6 @@ node() {
   stage('build') {
 		npmExecute (script: this, dockerImage: 'node:8-stretch') {
 		sh 'npm install && npm run build'
+		}
   }
 }
