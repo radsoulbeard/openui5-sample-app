@@ -1,4 +1,4 @@
-@Library('piper-lib-os') _
+@Library('piper-lib-ye') _
 
 node() {
 
@@ -8,10 +8,6 @@ node() {
   }
 
   stage('build') {
-      mtaBuild script: this, dockerImage: 'ppiper/mta-archive-builder', buildTarget: 'NEO'
-  }
-
-  stage('deploy') {
-      neoDeploy script: this, dockerImage: 'ppiper/neo-cli'
+      npmExecute script: this, dockerImage: 'node:8-stretch', npmCommand: 'run build'
   }
 }
