@@ -1,4 +1,4 @@
-@Library('piper-lib-ye') _
+@Library('piper-lib-os') _
 
 node() {
   stage('prepare') {
