@@ -1,6 +1,14 @@
 'use strict';
 
 module.exports = function(grunt) {
+ // Project properties
+    var webAppDir = "webapp";
+    var targetDir = "target";
+    var tmpDir = targetDir + "/tmp";
+    var tmpDirDbg = targetDir + "/tmp-dbg";
+    var zipFileSuffix = "-opt-static-abap.zip";
+    var preloadPrefix = "nw/epm/refapps/ext/shop";
+    var nexusGroupId = "com.yourcompany";
 
 	grunt.initConfig({
 
@@ -12,6 +20,7 @@ module.exports = function(grunt) {
 			src: {},
 			dist: {}
 		},
+		
 
 		openui5_connect: {
 			options: {
@@ -180,6 +189,13 @@ module.exports = function(grunt) {
 				reporters: ['progress', 'coverage']
 			}
 		}
+		zip: {
+            build: {
+                cwd: tmpDir,
+                src: tmpDir + "/**/*",
+                dest: targetDir + "/<%= pkg.name %>" + zipFileSuffix
+            }
+        }
 
 	});
 
@@ -207,6 +223,6 @@ module.exports = function(grunt) {
 	// Build task
 	grunt.registerTask('build', ['clean:dist', 'openui5_preload', 'copy']);
 
-	// Default task
+	grunt.registerTask("createZip", ["zip"]);
 	grunt.registerTask('default', ['build']);
 };
