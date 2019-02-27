@@ -1,17 +1,14 @@
-'use strict';
+'use strict'
 
 module.exports = function(grunt) {
  // Project properties
-    var webAppDir = "webapp";
-    var targetDir = "target";
-    var tmpDir = targetDir + "/tmp";
-    var tmpDirDbg = targetDir + "/tmp-dbg";
-    var zipFileSuffix = "-opt-static-abap.zip";
-    var preloadPrefix = "nw/epm/refapps/ext/shop";
-    var nexusGroupId = "com.yourcompany";
+    var webAppDir = "webapp"
+    var targetDir = "target"
+    var tmpDir = targetDir + "/tmp"
+    var zipFileSuffix = "-opt-static-abap.zip"
 
 	grunt.initConfig({
-
+		pkg: grunt.file.readJSON("package.json"),
 		connect: {
 			options: {
 				port: 32080,
@@ -188,7 +185,7 @@ module.exports = function(grunt) {
 				},
 				reporters: ['progress', 'coverage']
 			}
-		}
+		},
 		zip: {
             build: {
                 cwd: tmpDir,
@@ -196,7 +193,6 @@ module.exports = function(grunt) {
                 dest: targetDir + "/<%= pkg.name %>" + zipFileSuffix
             }
         }
-
 	});
 
 	// These plugins provide necessary tasks.
@@ -205,6 +201,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-openui5');
 	grunt.loadNpmTasks('grunt-eslint');
+	grunt.loadNpmTasks('grunt-zip');
 	grunt.loadNpmTasks('grunt-karma');
 
 	// Server task
@@ -221,7 +218,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('coverage', ['clean:coverage', 'openui5_connect:src', 'karma:coverage']);
 
 	// Build task
-	grunt.registerTask('build', ['clean:dist', 'openui5_preload', 'copy']);
+	grunt.registerTask('build', ['clean:dist', 'openui5_preload', 'copy', 'zip']);
 
 	grunt.registerTask("createZip", ["zip"]);
 	grunt.registerTask('default', ['build']);
