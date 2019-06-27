@@ -16,6 +16,7 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+container: mta
 
 stages:
 - stage: build  # name of the stage, A-Z, a-z, 0-9, and underscore
@@ -27,10 +28,10 @@ stages:
 
 - stage: deploy
   displayName: Deploy to SAP Cloud Platform (neo)
-	dependsOn: build
+    dependsOn: build
   jobs:
     job: build
     steps:
-      - bash: 'mtaBuild --build-target NEO --mtar out.mtar build'
+      - bash: 'ls -lah'
 
-container: mta
+
