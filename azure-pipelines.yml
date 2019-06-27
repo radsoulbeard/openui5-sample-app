@@ -20,21 +20,21 @@ stages:
 - stage: build  # name of the stage, A-Z, a-z, 0-9, and underscore
   displayName: Build MTA # friendly name to display in the UI
   jobs:
-    job: build
-    pool:
-      vmImage: 'ubuntu-latest'
-    container: mta
-    steps:
-      - bash: 'mtaBuild --build-target NEO --mtar out.mtar build'
+    - job: build
+      pool:
+        vmImage: 'ubuntu-latest'
+      container: mta
+      steps:
+        - bash: 'mtaBuild --build-target NEO --mtar out.mtar build'
 
 - stage: deploy
   displayName: Deploy to SAP Cloud Platform (neo)
   jobs:
-    job: deploy
-    pool:
-      vmImage: 'ubuntu-latest'
-    container: neo
-    steps:
-      - bash: 'ls -lah'
+    - job: deploy
+      pool:
+        vmImage: 'ubuntu-latest'
+      container: neo
+      steps:
+        - bash: 'ls -lah'
 
 
