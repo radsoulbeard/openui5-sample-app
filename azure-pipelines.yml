@@ -9,7 +9,7 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-container: ppiper/mta-archive-builder
+container: 'ppiper/mta-archive-builder:latest'
 
 steps:
-- script: mtaBuild
+- script: 'mtaBuild --version'
