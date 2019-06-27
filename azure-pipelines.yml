@@ -28,7 +28,6 @@ stages:
 
 - stage: deploy
   displayName: Deploy to SAP Cloud Platform (neo)
-    dependsOn: build
   jobs:
     job: build
     steps:
