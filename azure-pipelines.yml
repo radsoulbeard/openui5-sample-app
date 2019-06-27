@@ -3,13 +3,18 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+resources:
+  containers:
+  - container: mta
+    image: 'ppiper/mta-archive-builder:latest'
+    options: --user 0:0
+
 trigger:
 - master
 
 pool:
   vmImage: 'ubuntu-latest'
 
-container: 'ppiper/mta-archive-builder:latest'
-
+container: mta
 steps:
-- script: 'mtaBuild --version'
+- bash: 'mtaBuild --version'
