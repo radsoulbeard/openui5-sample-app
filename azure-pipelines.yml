@@ -24,7 +24,7 @@ stages:
   displayName: Build MTA # friendly name to display in the UI
   jobs:
     job: build
-		container: mta
+    container: mta
     steps:
       - bash: 'mtaBuild --build-target NEO --mtar out.mtar build'
 
@@ -32,7 +32,7 @@ stages:
   displayName: Deploy to SAP Cloud Platform (neo)
   jobs:
     job: build
-		container: neo
+    container: neo
     steps:
       - bash: 'ls -lah'
 
