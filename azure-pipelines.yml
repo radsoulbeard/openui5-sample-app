@@ -8,6 +8,10 @@ resources:
   - container: mta
     image: 'ppiper/mta-archive-builder:latest'
     options: --user 0:0
+  - container: neo
+    image: 'ppiper/neo-cli'
+    options: --user 0:0
+
 
 trigger:
 - master
@@ -17,4 +21,8 @@ pool:
 
 container: mta
 steps:
-- bash: 'mtaBuild --version'
+- bash: 'mtaBuild --build-target NEO --mtar out.mtar build'
+
+container neo
+steps 
+- bash: 'neo.sh help'
