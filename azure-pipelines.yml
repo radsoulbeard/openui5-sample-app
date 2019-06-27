@@ -9,6 +9,9 @@ resources:
   - container: mta
     image: 'ppiper/mta-archive-builder:latest'
     options: --user 0:0
+  - container: neo
+    image: 'ppiper/neo-cli:latest'
+    options: --user 0:0
 
 trigger:
 - master
@@ -16,13 +19,12 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-container: mta
-
 stages:
 - stage: build  # name of the stage, A-Z, a-z, 0-9, and underscore
   displayName: Build MTA # friendly name to display in the UI
   jobs:
     job: build
+		container: mta
     steps:
       - bash: 'mtaBuild --build-target NEO --mtar out.mtar build'
 
@@ -30,6 +32,7 @@ stages:
   displayName: Deploy to SAP Cloud Platform (neo)
   jobs:
     job: build
+		container: neo
     steps:
       - bash: 'ls -lah'
 
