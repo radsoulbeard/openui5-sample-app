@@ -23,6 +23,6 @@ container: mta
 steps:
 - bash: 'mtaBuild --build-target NEO --mtar out.mtar build'
 
-container neo
-steps 
+container: neo
+steps: 
 - bash: 'neo.sh help'
