@@ -35,6 +35,6 @@ stages:
         vmImage: 'ubuntu-latest'
       #container: neo
       steps:
-        - bash: 'docker build -t local/neo-cli https://github.com/SAP/devops-docker-images#neo-cli:/pr/bash-for-neo'
+        - bash: 'docker build -t local/neo-cli https://github.com/SAP/devops-docker-images#/pr/bash-for-neo:neo-cli'
 
 
