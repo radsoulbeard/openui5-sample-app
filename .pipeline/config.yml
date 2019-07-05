@@ -3,6 +3,8 @@ steps:
   mtaBuild:
     buildTarget: 'NEO'
   neoDeploy:
-    neoCredentialsId: 'NEO_DEPLOY'
-    account: 'r15qd7iy5l'
-    host: 'hana.ondemand.com'
+    deployMode: mta
+    neo:
+      neoCredentialsId: 'NEO_DEPLOY'
+      account: 'r15qd7iy5l'
+      host: 'hana.ondemand.com'
