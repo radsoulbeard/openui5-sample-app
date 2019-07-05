@@ -5,6 +5,6 @@ steps:
   neoDeploy:
     deployMode: mta
     neo:
-      neoCredentialsId: 'NEO_DEPLOY'
+      credentialsId: 'NEO_DEPLOY'
       account: 'r15qd7iy5l'
       host: 'hana.ondemand.com'
