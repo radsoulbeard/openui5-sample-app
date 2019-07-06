@@ -26,6 +26,7 @@ stages:
       container: mta
       steps:
         - bash: 'mtaBuild --build-target NEO --mtar out.mtar build'
+        artifact: out.mtar
 
 - stage: deploy
   displayName: Deploy to SAP Cloud Platform (neo)
