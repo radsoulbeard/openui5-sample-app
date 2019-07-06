@@ -26,6 +26,7 @@ stages:
       container: mta
       steps:
         - bash: 'mtaBuild --build-target NEO --mtar out.mtar build'
+				- bash: 'ls -lah'
         - publish: out.mtar
           artifact: mtar
 
