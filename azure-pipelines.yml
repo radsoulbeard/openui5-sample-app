@@ -38,6 +38,7 @@ stages:
         vmImage: 'ubuntu-latest'
       #container: neo
       steps:
+			  - bash: 'rm -rf .'
         - download: current
           artifact: mtar
         - bash: 'ls -lah'
