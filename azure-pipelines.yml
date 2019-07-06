@@ -26,6 +26,7 @@ stages:
       container: mta
       steps:
         - bash: 'mtaBuild --build-target NEO --mtar out.mtar build'
+        - publish: $(System.DefaultWorkingDirectory)
           artifact: out.mtar
 
 - stage: deploy
