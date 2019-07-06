@@ -26,9 +26,11 @@ stages:
       container: mta
       steps:
         - bash: 'mtaBuild --build-target NEO --mtar out.mtar build'
-        - bash: 'ls -lah'
-        - publish: out.mtar
-          artifact: mtar
+        - task: PublishBuildArtifacts@1
+          inputs:
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+            ArtifactName: 'mtar'
+            publishLocation: 'Container'
 
 - stage: deploy
   displayName: Deploy to SAP Cloud Platform (neo)
@@ -38,10 +40,15 @@ stages:
         vmImage: 'ubuntu-latest'
       #container: neo
       steps:
-        - bash: 'rm -rf .'
-        - download: current
-          artifact: mtar
-        - bash: 'ls -lah'
+        - task: DeleteFiles@1
+          inputs:
+            SourceFolder: '.'
+            Contents: '*'
+        - task: DownloadBuildArtifacts@0
+          inputs:
+            buildType: 'current'
+            downloadType: 'single'
+            downloadPath: '$(System.ArtifactsDirectory)'
         - bash: 'docker build -t local/neo-cli https://github.com/SAP/devops-docker-images.git#pr/bash-for-neo:neo-cli'
         - bash: 'docker run local/neo-cli neo.sh deploy-mta --host ondemand.hana.com --account r15qd7iy5l --source out.mtar -u $(USER) -p $(PASSWORD)'
 
