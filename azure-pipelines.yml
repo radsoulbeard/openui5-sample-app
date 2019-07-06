@@ -39,7 +39,6 @@ stages:
       #container: neo
       steps:
         - download: current
-          artifact: mtar
           patterns: **/*.mtar
         - bash: 'ls -lah'
         - bash: 'docker build -t local/neo-cli https://github.com/SAP/devops-docker-images.git#pr/bash-for-neo:neo-cli'
