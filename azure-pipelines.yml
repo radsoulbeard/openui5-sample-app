@@ -40,7 +40,7 @@ stages:
       steps:
         - download: current
           artifact: mtar
-          path: .
+          patterns: **/*.mtar
         - bash: 'ls -lah'
         - bash: 'docker build -t local/neo-cli https://github.com/SAP/devops-docker-images.git#pr/bash-for-neo:neo-cli'
         - bash: 'docker run local/neo-cli neo.sh deploy-mta --host ondemand.hana.com --account r15qd7iy5l --source out.mtar -u $(USER) -p $(PASSWORD)'
