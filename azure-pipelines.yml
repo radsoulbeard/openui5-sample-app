@@ -46,6 +46,7 @@ stages:
             Contents: '*'
         - task: DownloadBuildArtifacts@0
           inputs:
+            artifactName: 'mtar'
             buildType: 'current'
             downloadType: 'single'
             downloadPath: '$(System.ArtifactsDirectory)'
