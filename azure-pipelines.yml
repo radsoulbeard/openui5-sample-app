@@ -11,7 +11,6 @@ resources:
     options: --user 0:0
   - container: neo
     image: 'ppiper/neo-cli:latest'
-    options: --user 0:0
   - container: node
     image: 'geekykaran/headless-chrome-node-docker:latest'
     options: --privileged
@@ -21,8 +20,8 @@ trigger:
 - master
 
 stages:
-- stage: build  # name of the stage, A-Z, a-z, 0-9, and underscore
-  displayName: Build MTA # friendly name to display in the UI
+- stage: Build MTA
+  displayName: Build MTA for SAP Cloud Platform
   jobs:
     - job: build
       pool:
@@ -36,8 +35,8 @@ stages:
             ArtifactName: 'mtar'
             publishLocation: 'Container'
 
-- stage: test  # name of the stage, A-Z, a-z, 0-9, and underscore
-  displayName: Run Test Suite # friendly name to display in the UI
+- stage: Run Karma Test Suite
+  displayName: Run Karma Test Suite
   jobs:
     - job: test
       pool:
@@ -46,18 +45,13 @@ stages:
       steps:
         - bash: 'npm install && npm run-script test'
 
-- stage: deploy
-  displayName: Deploy to SAP Cloud Platform (neo)
+- stage: Deployment to SAP Cloud Platform
+  displayName: Deployment to SAP Cloud Platform (neo)
   jobs:
     - job: deploy
       pool:
         vmImage: 'ubuntu-latest'
-      #container: neo
       steps:
-        - task: DeleteFiles@1
-          inputs:
-            SourceFolder: '.'
-            Contents: '*'
         - task: DownloadBuildArtifacts@0
           inputs:
             artifactName: 'mtar'
@@ -65,4 +59,4 @@ stages:
             downloadType: 'single'
             downloadPath: '$(System.ArtifactsDirectory)'
         - bash: 'docker build -t local/neo-cli https://github.com/SAP/devops-docker-images.git#pr/bash-for-neo:neo-cli'
-        - bash: 'docker run -v $(System.ArtifactsDirectory)/mtar/:/data -w /data local/neo-cli neo.sh deploy-mta --host hana.ondemand.com --account r15qd7iy5l --source "out.mtar" -u "$(USER)" -p "$(PASSWORD)"'
+        - bash: 'docker run -v $(System.ArtifactsDirectory)/mtar/:/data -w /data local/neo-cli neo.sh deploy-mta --host "$(NEO_HOST)" --account "$(NEO_ACCOUNT)" --source "out.mtar" -u "$(NEO_USER)" -p "$(NEO_PASSWORD)"'
