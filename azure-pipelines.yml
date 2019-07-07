@@ -20,7 +20,7 @@ trigger:
 - master
 
 stages:
-- stage: Build MTA
+- stage: build
   displayName: Build MTA for SAP Cloud Platform
   jobs:
     - job: build
@@ -35,7 +35,7 @@ stages:
             ArtifactName: 'mtar'
             publishLocation: 'Container'
 
-- stage: Run Karma Test Suite
+- stage: test
   displayName: Run Karma Test Suite
   jobs:
     - job: test
@@ -45,7 +45,7 @@ stages:
       steps:
         - bash: 'npm install && npm run-script test'
 
-- stage: Deployment to SAP Cloud Platform
+- stage: deploy
   displayName: Deployment to SAP Cloud Platform (neo)
   jobs:
     - job: deploy
