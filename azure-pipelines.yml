@@ -14,6 +14,7 @@ resources:
     options: --user 0:0
   - container: node
     image: 'geekykaran/headless-chrome-node-docker:latest'
+    options: --user 0:0
 
 trigger:
 - master
