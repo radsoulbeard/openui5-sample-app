@@ -6,9 +6,9 @@ parameters:
   hcp-deployer-version: "1.0.0"
 
 modules:
-  - name: "webapp"
+  - name: webapp
     type: html5
-    path: .
+    path: webapp
     parameters:
        version: 1.0.0-${timestamp}
     build-parameters:
