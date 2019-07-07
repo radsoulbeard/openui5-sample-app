@@ -42,7 +42,7 @@ stages:
         vmImage: 'ubuntu-latest'
       container: node
       steps:
-        - bash: 'npm run-script test'
+        - bash: 'npm install && npm run-script test'
 
 - stage: deploy
   displayName: Deploy to SAP Cloud Platform (neo)
