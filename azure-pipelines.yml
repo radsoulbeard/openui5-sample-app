@@ -13,7 +13,7 @@ resources:
     image: 'ppiper/neo-cli:latest'
     options: --user 0:0
   - container: node
-    image: 'node:latest'
+    image: 'geekykaran/headless-chrome-node-docker:latest'
 
 trigger:
 - master
