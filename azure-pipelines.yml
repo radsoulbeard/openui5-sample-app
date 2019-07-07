@@ -50,7 +50,5 @@ stages:
             buildType: 'current'
             downloadType: 'single'
             downloadPath: '$(System.ArtifactsDirectory)'
-        - bash: 'ls -laRh'
-        - bash: 'pwd && ls -lahR $(System.ArtifactsDirectory)'
         - bash: 'docker build -t local/neo-cli https://github.com/SAP/devops-docker-images.git#pr/bash-for-neo:neo-cli'
         - bash: 'docker run -v $(System.ArtifactsDirectory)/mtar/:/data -w /data local/neo-cli neo.sh deploy-mta --host hana.ondemand.com --account r15qd7iy5l --source "out.mtar" -u "$(USER)" -p "$(PASSWORD)"'
