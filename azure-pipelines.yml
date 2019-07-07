@@ -12,6 +12,8 @@ resources:
   - container: neo
     image: 'ppiper/neo-cli:latest'
     options: --user 0:0
+  - container: node
+    image: 'node:latest'
 
 trigger:
 - master
@@ -31,6 +33,16 @@ stages:
             PathtoPublish: '$(Build.ArtifactStagingDirectory)'
             ArtifactName: 'mtar'
             publishLocation: 'Container'
+
+- stage: test  # name of the stage, A-Z, a-z, 0-9, and underscore
+  displayName: Run Test Suite # friendly name to display in the UI
+  jobs:
+    - job: test
+      pool:
+        vmImage: 'ubuntu-latest'
+      container: node
+      steps:
+        - bash: 'npm run-script test'
 
 - stage: deploy
   displayName: Deploy to SAP Cloud Platform (neo)
