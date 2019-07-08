@@ -1,16 +1,11 @@
 #Steps Specific Configuration
 steps:
   mtaBuild:
-    buildTarget: 'CF'
+    buildTarget: 'NEO'
   neoDeploy:
     deployMode: mta
     neo:
       credentialsId: 'NEO_DEPLOY'
       account: 'r15qd7iy5l'
       host: 'hana.ondemand.com'
-  cloudFoundryDeploy:
-    cloudFoundry:
-      credentialsId: 'CF_DEPLOY'
-      apiEndpoint: 'https://api.cf.eu10.hana.ondemand.com'
-      org: 'piper'
-      space: 'demo'
+  
