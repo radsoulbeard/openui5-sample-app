@@ -8,3 +8,9 @@ steps:
       credentialsId: 'NEO_DEPLOY'
       account: 'r15qd7iy5l'
       host: 'hana.ondemand.com'
+  cloudFoundryDeploy:
+    cloudFoundry:
+      credentialsId: 'NEO_DEPLOY'
+      apiEndpoint: 'https://api.cf.eu10.hana.ondemand.com'
+      org: 'piper'
+      space: 'demo'
