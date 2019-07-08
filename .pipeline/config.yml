@@ -1,7 +1,7 @@
 #Steps Specific Configuration
 steps:
   mtaBuild:
-    buildTarget: 'NEO'
+    buildTarget: 'CF'
   neoDeploy:
     deployMode: mta
     neo:
