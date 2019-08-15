@@ -51,6 +51,7 @@ stages:
     - job: deploy
       pool:
         vmImage: 'ubuntu-latest'
+      container: neo
       steps:
         - task: DownloadBuildArtifacts@0
           inputs:
@@ -58,5 +59,4 @@ stages:
             buildType: 'current'
             downloadType: 'single'
             downloadPath: '$(System.ArtifactsDirectory)'
-        - bash: 'docker build -t local/neo-cli https://github.com/SAP/devops-docker-images.git#pr/bash-for-neo:neo-cli'
-        - bash: 'docker run -v $(System.ArtifactsDirectory)/mtar/:/data -w /data local/neo-cli neo.sh deploy-mta --host "$(NEO_HOST)" --account "$(NEO_ACCOUNT)" --source "out.mtar" -u "$(NEO_USER)" -p "$(NEO_PASSWORD)"'
+        - bash: 'neo.sh deploy-mta --host "$(NEO_HOST)" --account "$(NEO_ACCOUNT)" --source "mtar/out.mtar" -u "$(NEO_USER)" -p "$(NEO_PASSWORD)"'
