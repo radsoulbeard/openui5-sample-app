@@ -48,10 +48,4 @@ stages:
         vmImage: 'ubuntu-latest'
       container: neo
       steps:
-        - task: DownloadBuildArtifacts@0
-          inputs:
-            artifactName: 'mtar'
-            buildType: 'current'
-            downloadType: 'single'
-            downloadPath: '$(System.ArtifactsDirectory)'
         - bash: 'neo.sh deploy-mta --host "$(NEO_HOST)" --account "$(NEO_ACCOUNT)" --source "target/out.mtar" -u "$(NEO_USER)" -p "$(NEO_PASSWORD)"'
