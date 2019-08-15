@@ -11,10 +11,10 @@ resources:
     options: --user 0:0
   - container: neo
     image: 'ppiper/neo-cli:latest'
+    options: --user 0:0 --privileged
   - container: node
     image: 'geekykaran/headless-chrome-node-docker:latest'
     options: --privileged
-
 
 trigger:
 - master
@@ -28,12 +28,7 @@ stages:
         vmImage: 'ubuntu-latest'
       container: mta
       steps:
-        - bash: 'mtaBuild --build-target NEO --mtar $(Build.ArtifactStagingDirectory)/out.mtar build'
-        - task: PublishBuildArtifacts@1
-          inputs:
-            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-            ArtifactName: 'mtar'
-            publishLocation: 'Container'
+        - bash: 'mtaBuild --build-target NEO --mtar target/out.mtar build'
 
 - stage: test
   displayName: Run Karma Test Suite
@@ -59,4 +54,4 @@ stages:
             buildType: 'current'
             downloadType: 'single'
             downloadPath: '$(System.ArtifactsDirectory)'
-        - bash: 'neo.sh deploy-mta --host "$(NEO_HOST)" --account "$(NEO_ACCOUNT)" --source "mtar/out.mtar" -u "$(NEO_USER)" -p "$(NEO_PASSWORD)"'
+        - bash: 'neo.sh deploy-mta --host "$(NEO_HOST)" --account "$(NEO_ACCOUNT)" --source "target/out.mtar" -u "$(NEO_USER)" -p "$(NEO_PASSWORD)"'
