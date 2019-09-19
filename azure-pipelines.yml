@@ -8,7 +8,7 @@ resources:
   containers:
   - container: mta
     image: 'radsoulbeard/agnosticmta:latest'
-    options: --user 0:0 --privileged
+    options: --user 1001:1001 --privileged
   - container: neo
     image: 'ppiper/neo-cli:latest'
     options: --user 0:0 --privileged
