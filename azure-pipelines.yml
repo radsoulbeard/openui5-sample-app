@@ -7,8 +7,7 @@ name: cd-openui5-sample-app
 resources:
   containers:
   - container: mta
-    image: 'ppiper/mta-archive-builder:latest'
-    options: --user 0:0
+    image: 'radsoulbeard/agnosticmta:latest'
   - container: neo
     image: 'ppiper/neo-cli:latest'
     options: --user 0:0 --privileged
