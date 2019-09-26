@@ -9,8 +9,8 @@ resources:
   - container: mta
     image: 'radsoulbeard/agnosticmta:latest'
     options: --user 0:0 --privileged
-  - container: neo
-    image: 'ppiper/neo-cli:latest'
+  - container: cf
+    image: 'ppiper/cf-cli:latest'
     options: --user 0:0 --privileged
   - container: node
     image: 'geekykaran/headless-chrome-node-docker:latest'
@@ -28,7 +28,7 @@ stages:
         vmImage: 'ubuntu-latest'
       container: mta
       steps:
-        - bash: 'mtaBuild --build-target NEO --mtar target/out.mtar build'
+        - bash: 'mtaBuild --build-target CF --mtar target/out.mtar build'
 
 - stage: test
   displayName: Run Karma Test Suite
@@ -40,12 +40,12 @@ stages:
       steps:
         - bash: 'npm install && npm run-script test'
 
-#- stage: deploy
-#  displayName: Deployment to SAP Cloud Platform (neo)
-#  jobs:
-#    - job: deploy
-#      pool:
-#        vmImage: 'ubuntu-latest'
-#      container: neo
-#      steps:
-#        - bash: 'neo.sh deploy-mta --host "$(NEO_HOST)" --account "$(NEO_ACCOUNT)" --source "target/out.mtar" -u "$(NEO_USER)" -p "$(NEO_PASSWORD)"'
+- stage: deploy
+  displayName: Deployment to SAP Cloud Platform (neo)
+  jobs:
+    - job: deploy
+      pool:
+        vmImage: 'ubuntu-latest'
+      container: cf
+      steps:
+        - bash: 'cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)" && cf  deploy MTA'
