@@ -9,7 +9,7 @@ resources:
   - container: mta
     image: 'radsoulbeard/agnosticmta:latest'
     options: --user 0:0 --privileged
-  - container: cf
+  - container: cfcli
     image: 'ppiper/cf-cli:latest'
     options: --user 0:0 --privileged
   - container: node
@@ -46,6 +46,6 @@ stages:
     - job: deploy
       pool:
         vmImage: 'ubuntu-latest'
-      container: cf
+      container: cfcli
       steps:
-        - bash: 'cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)" && cf plugins && cf deploy MTA'
+        - bash: 'cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)" && cf plugins && cf deploy target/out.mtar'
