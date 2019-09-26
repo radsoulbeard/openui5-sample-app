@@ -10,7 +10,7 @@ resources:
     image: 'radsoulbeard/agnosticmta:latest'
     options: --user 0:0 --privileged
   - container: cfcli
-    image: 'ppiper/cf-cli:latest'
+    image: 's4sdk/docker-cf-cli'
     options: --user 0:0 --privileged
   - container: node
     image: 'geekykaran/headless-chrome-node-docker:latest'
