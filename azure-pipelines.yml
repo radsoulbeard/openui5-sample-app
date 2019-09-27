@@ -29,6 +29,8 @@ stages:
       container: mta
       steps:
         - bash: 'mtaBuild --build-target CF --mtar target/out.mtar build && ls -la'
+				- publish: target/out.mtar
+				  artifact: mtar
 
 - stage: test
   displayName: Run Karma Test Suite
