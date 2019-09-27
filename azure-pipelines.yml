@@ -28,7 +28,7 @@ stages:
         vmImage: 'ubuntu-latest'
       container: mta
       steps:
-        - bash: 'mtaBuild --build-target CF --mtar target/out.mtar build'
+        - bash: 'mtaBuild --build-target CF --mtar target/out.mtar build && ls -la'
 
 - stage: test
   displayName: Run Karma Test Suite
