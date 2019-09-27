@@ -48,4 +48,4 @@ stages:
         vmImage: 'ubuntu-latest'
       container: cfcli
       steps:
-        - bash: 'ps -ef && cf --version && cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)" && cf plugins && cf deploy target/out.mtar'
+        - bash: 'ls -la && cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)" && cf deploy target/out.mtar'
