@@ -30,7 +30,7 @@ stages:
       steps:
         - bash: 'mtaBuild --build-target CF --mtar target/out.mtar build && ls -la'
         - publish: target/out.mtar
-          artifact: mtar
+          artifact: out.mtar
 
 - stage: test
   displayName: Run Karma Test Suite
@@ -51,5 +51,5 @@ stages:
       container: cfcli
       steps:
         - download: current
-          artifact: mtar
-        - bash: 'ls -la && cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)" && cf deploy target/out.mtar'
+          artifact: out.mtar
+        - bash: 'ls -la && cf login -u "$(CF-USER)" -p "$(CF-PASSWORD)" -a "$(CF-API)" -o "$(CF-ORG)" -s "$(CF-SPACE)" && cf deploy $(Pipeline.Workspace)/out.mtar'
