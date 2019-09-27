@@ -8,7 +8,7 @@ resources:
   containers:
   - container: mta
     image: 'radsoulbeard/agnosticmta:latest'
-    options: --user 0:0 --privileged
+    options: --user 0:0
   - container: cfcli
     image: 'radsoulbeard/cf-cli'
     options: --user 0:0 --privileged --env CF_HOME="/home/piper"
