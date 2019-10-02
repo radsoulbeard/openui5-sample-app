@@ -11,7 +11,7 @@ resources:
     options: --user 0:0
   - container: cfcli
     image: 'radsoulbeard/cf-cli'
-    options: --user 0:0 --privileged --env CF_HOME="/home/piper"
+    options: --user 0:0 --privileged
   - container: node
     image: 'geekykaran/headless-chrome-node-docker:latest'
     options: --privileged
